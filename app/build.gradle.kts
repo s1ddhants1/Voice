@@ -198,6 +198,9 @@ dependencies {
   implementation(projects.core.audiobookshelf.impl)
   implementation(projects.core.foldersync)
   implementation(projects.features.audiobookshelf)
+  implementation(projects.core.torrent)
+  implementation(projects.core.audiobookbay)
+  implementation(projects.features.discover)
 
   implementation(libs.appCompat)
   implementation(libs.lifecycle.compose)

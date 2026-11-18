@@ -144,3 +144,9 @@ include(":features:audiobookshelf")
 include(":core:foldersync")
 
 include(":core:datastore")
+
+include(":core:torrent")
+
+include(":core:audiobookbay")
+
+include(":features:discover")

@@ -39,6 +39,7 @@ import voice.core.data.category
 import voice.core.data.folders.AudiobookFolders
 import voice.core.data.folders.FolderType
 import voice.core.data.isRemote
+import voice.core.data.isStream
 import voice.core.data.repo.BookRepository
 import voice.core.data.store.CurrentBookStore
 import voice.core.documentfile.nameWithoutExtension
@@ -192,13 +193,14 @@ class BookOverviewViewModel(
         showNotDownloadedBooks == null ||
         grouping == null ||
         // server books would pop in and out of the library while their downloads load
-        (downloadStates == null && library.books.any { it.id.isRemote })
+        (downloadStates == null && library.books.any { it.id.isRemote && !it.id.isStream })
     ) {
       return BookOverviewViewState.Loading
     }
     // the current book stays, so the library keeps its controls while it plays
     fun Book.notDownloaded() =
       id.isRemote &&
+        !id.isStream &&
         id != currentBook.id &&
         downloadStates?.get(id) !is BookDownloadState.Downloaded
     fun Book.passesHiddenFilter() = showHiddenBooks || !custom.hidden
@@ -403,6 +405,10 @@ class BookOverviewViewModel(
 
   fun onSearchClick() {
     navigator.goTo(Destination.LibrarySearch)
+  }
+
+  fun onDiscoverClick() {
+    navigator.goTo(Destination.Discover)
   }
 
   fun onBookClick(id: BookId) {

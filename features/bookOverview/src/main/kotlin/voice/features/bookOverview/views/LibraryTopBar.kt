@@ -58,6 +58,7 @@ internal fun LibraryTopBar(
   isLoading: Boolean,
   scrollBehavior: SearchBarScrollBehavior?,
   onSearchClick: () -> Unit,
+  onDiscoverClick: () -> Unit,
   onBookFolderClick: () -> Unit,
   onFilterClick: () -> Unit,
   onSettingsClick: () -> Unit,
@@ -83,6 +84,12 @@ internal fun LibraryTopBar(
         }
       },
       actions = {
+        IconButton(onClick = onDiscoverClick) {
+          Icon(
+            painter = painterResource(UiR.drawable.ic_cloud),
+            contentDescription = "Discover",
+          )
+        }
         if (showFolderPickerIcon) {
           BookFolderIcon(onClick = onBookFolderClick)
         }
@@ -172,6 +179,7 @@ private fun LibraryTopBarPreview() {
       isLoading = false,
       scrollBehavior = null,
       onSearchClick = {},
+      onDiscoverClick = {},
       onBookFolderClick = {},
       onFilterClick = {},
       onSettingsClick = {},

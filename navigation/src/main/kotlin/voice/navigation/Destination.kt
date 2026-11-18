@@ -88,6 +88,18 @@ sealed interface Destination {
   }
 
   @Serializable
+  data object Discover : Compose {
+    override val trackingName: String
+      get() = "Discover"
+  }
+
+  @Serializable
+  data class DiscoverDetail(val slug: String) : Compose {
+    override val trackingName: String
+      get() = "DiscoverDetail"
+  }
+
+  @Serializable
   data class Series(val name: String) : Compose {
     override val trackingName: String
       get() = "Series"
